@@ -1,0 +1,4 @@
+.env
+reports/
+temp_report.html
+__pycache__/
