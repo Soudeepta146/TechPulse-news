@@ -2,13 +2,14 @@ name: TechPulse AI Daily Pipeline
 
 on:
   schedule:
-    # This runs at 00:30 UTC every day (6:00 AM IST)
     - cron: '30 0 * * *'
-  workflow_dispatch: # Allows you to run it manually for testing
+  workflow_dispatch:
 
 jobs:
   build-and-run:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     steps:
       - name: Checkout Code
@@ -21,6 +22,7 @@ jobs:
 
       - name: Install Dependencies
         run: |
+          pip install -U google-generativeai # Force update to fix 404
           pip install -r requirements.txt
           python -m playwright install chromium --with-deps
 
@@ -31,3 +33,13 @@ jobs:
           EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
           EMAIL_RECEIVER: ${{ secrets.EMAIL_RECEIVER }}
         run: python run_daily.py
+
+      - name: Commit and Push Live Site to GitHub
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git commit -m "Automated Deployment: Update Intelligence Dashboard" || echo "No changes"
+          git push
+
+
