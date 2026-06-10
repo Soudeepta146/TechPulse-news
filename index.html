@@ -8,16 +8,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
 
 :root {
-        --bg-deep: #020617;
-        --bg-surface: #0f172a;
+        --primary-bg: #020617;
+        --surface-card: rgba(15, 23, 42, 0.7);
         --accent-blue: #3b82f6;
         --accent-mint: #10b981;
-        --text-primary: #f8fafc;
-        --text-secondary: #94a3b8;
+        --text-main: #f8fafc;
+        --text-dim: #94a3b8;
         --border: rgba(255, 255, 255, 0.08);
-        --glass: rgba(15, 23, 42, 0.7);
         --danger: #ef4444;
         --warning: #f59e0b;
+        --glass: rgba(15, 23, 42, 0.3);
     }
 
     * {
@@ -30,26 +30,26 @@
     }
 
     body {
-    background-color: var(--bg-deep);
-    color: var(--text-primary);
-    overflow-x: hidden;
-    background-image:
-        radial-gradient(circle at 0% 0%, rgba(59, 130, 246, 0.05) 0%, transparent 50%),
-        radial-gradient(circle at 100% 100%, rgba(45, 212, 191, 0.05) 0%, transparent 50%);
-
-    display: flex;
-    justify-content: center;
+        background-color: var(--primary-bg);
+        color: var(--text-main);
+        overflow-x: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-image: 
+            radial-gradient(circle at 0% 0%, rgba(59, 130, 246, 0.05) 0%, transparent 50%),
+            radial-gradient(circle at 100% 100%, rgba(45, 212, 191, 0.05) 0%, transparent 50%);
     }
 
     .dashboard {
-        width: 100%;
-        max-width: 1240px;
+        width: 95%;
+        max-width: 1400px;
         margin: 0 auto;
         background: #0b1120;
         border-left: 1px solid var(--border);
         border-right: 1px solid var(--border);
         min-height: 100vh;
-        box-shadow: 0 0 100px rgba(0,0,0,0.5);
+        box-shadow: 0 0 100px rgba(0,0,0,0.8);
     }
 
     /* TOP NAVIGATION */
@@ -68,7 +68,6 @@
 
     .nav-left { display: flex; align-items: center; gap: 20px; }
     .logo { font-size: 18px; font-weight: 800; letter-spacing: 2px; color: var(--text-main); text-transform: uppercase; }
-    .nav-badges { display: flex; gap: 10px; }
     .badge { padding: 4px 12px; border-radius: 4px; font-size: 10px; font-weight: 700; text-transform: uppercase; border: 1px solid transparent; }
     .badge-brief { background: rgba(59, 130, 246, 0.1); color: var(--accent-blue); border-color: var(--accent-blue); }
     .badge-online { background: rgba(16, 185, 129, 0.1); color: var(--accent-mint); border-color: var(--accent-mint); }
@@ -100,50 +99,48 @@
         border-bottom: 1px solid var(--border);
     }
 
-    /* UPDATED: FULLY DESCRIPTIVE INFOGRAPHIC */
     .hero-viz {
         background: #020617;
         border: 1px solid var(--border);
         border-radius: 20px;
-        height: 480px;
-        padding: 25px;
+        height: 520px;
+        padding: 30px;
         position: relative;
-        display: flex;
-        flex-direction: column;
         overflow: hidden;
     }
 
-    .viz-header { display: flex; justify-content: space-between; margin-bottom: 15px; border-bottom: 1px solid var(--border); padding-bottom: 15px; }
-    .viz-group label { font-size: 10px; font-weight: 800; color: var(--accent-blue); text-transform: uppercase; display: block; }
+    .viz-header { display: flex; justify-content: space-between; border-bottom: 1px solid var(--border); padding-bottom: 15px; margin-bottom: 20px; }
+    .viz-group label { font-size: 10px; font-weight: 800; color: var(--accent-blue); text-transform: uppercase; }
     .viz-group div { font-size: 24px; font-weight: 800; margin-top: 5px; }
 
-    /* Data Nodes for Infographic */
+    /* Descriptive Data Nodes Overlaying Image */
     .data-node {
         position: absolute;
-        background: rgba(15, 23, 42, 0.9);
+        background: rgba(15, 23, 42, 0.95);
         border: 1px solid var(--border);
-        padding: 12px 16px;
+        padding: 14px;
         border-radius: 12px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         z-index: 10;
+        width: 200px;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.6);
         backdrop-filter: blur(10px);
     }
     .data-node b { display: block; font-size: 10px; color: var(--accent-blue); text-transform: uppercase; margin-bottom: 4px; }
-    .data-node span { display: block; font-size: 14px; font-weight: 800; color: white; }
-    .data-node p { font-size: 10px; color: var(--text-dim); margin-top: 4px; line-height: 1.2; }
+    .data-node span { display: block; font-size: 15px; font-weight: 800; color: white; }
+    .data-node p { font-size: 10px; color: var(--text-dim); margin-top: 5px; line-height: 1.3; }
 
-    /* Positioning Nodes */
-    .node-nvda { top: 20%; right: 5%; border-left: 4px solid var(--accent-mint); width: 180px; }
-    .node-sword { bottom: 10%; right: 35%; border-left: 4px solid var(--danger); width: 170px; }
-    .node-mistral { top: 45%; left: 5%; border-left: 4px solid var(--accent-blue); width: 170px; }
-    .node-cisco { top: 20%; left: 35%; border-left: 4px solid var(--warning); width: 160px; }
-    .node-robin { bottom: 15%; left: 5%; border-left: 4px solid var(--accent-blue); width: 170px; }
+    /* Mapping News into the Infographic Nodes */
+    .node-1 { top: 15%; right: 5%; border-left: 4px solid var(--accent-mint); } /* Apple Intelligence */
+    .node-2 { top: 40%; left: 5%; border-left: 4px solid var(--accent-blue); } /* Musk vs OpenAI/Apple */
+    .node-3 { top: 15%; left: 35%; border-left: 4px solid var(--warning); } /* Nvidia xAI */
+    .node-4 { bottom: 10%; right: 35%; border-left: 4px solid var(--danger); } /* Wayve $1B Round */
+    .node-5 { bottom: 15%; left: 5%; border-left: 4px solid var(--accent-blue); } /* Rasp Pi IPO */
 
     .hero-content { display: flex; flex-direction: column; justify-content: center; }
     .theme-tag { color: var(--accent-blue); font-weight: 800; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; }
-    .hero-content h2 { font-size: 44px; font-weight: 800; line-height: 1.1; margin-bottom: 20px; }
-    .hero-content p { font-size: 16px; color: var(--text-dim); line-height: 1.6; margin-bottom: 30px; }
-    .market-signal { background: rgba(59, 130, 246, 0.05); border-left: 4px solid var(--accent-blue); padding: 20px; border-radius: 0 12px 12px 0; }
+    .hero-content h2 { font-size: 48px; font-weight: 800; line-height: 1.1; margin-bottom: 20px; }
+    .hero-content p { font-size: 17px; color: var(--text-dim); line-height: 1.6; margin-bottom: 30px; }
+    .market-signal { background: rgba(59, 130, 246, 0.05); border-left: 4px solid var(--accent-blue); padding: 25px; border-radius: 0 12px 12px 0; }
 
     /* INTELLIGENCE PIPELINE */
     .pipeline-wrap { padding: 40px; border-bottom: 1px solid var(--border); text-align: center; }
@@ -154,14 +151,14 @@
     .pipe-node.active .node-icon { border-color: var(--accent-blue); box-shadow: 0 0 20px rgba(59, 130, 246, 0.3); color: var(--accent-blue); }
     .node-label { font-size: 10px; font-weight: 700; color: var(--text-dim); text-transform: uppercase; white-space: nowrap; }
 
-    /* CONTENT GRID */
-    .main-grid { display: grid; grid-template-columns: 1fr 380px; gap: 30px; padding: 40px; }
+    /* MAIN CONTENT GRID */
+    .main-grid { display: grid; grid-template-columns: 1fr 400px; gap: 40px; padding: 40px; }
 
     /* STARTUP OF THE DAY */
     .card-startup { grid-column: span 2; background: var(--surface-card); border: 1px solid var(--border); border-radius: 24px; padding: 35px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 25px; backdrop-filter: blur(10px); }
     .startup-top { grid-column: span 4; display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
     .info-cell label { font-size: 9px; font-weight: 700; color: var(--text-dim); text-transform: uppercase; display: block; margin-bottom: 6px; }
-    .info-cell div { font-size: 15px; font-weight: 700; color: var(--text-main); }
+    .info-cell div { font-size: 16px; font-weight: 700; color: var(--text-main); }
     .takeaway { grid-column: span 4; background: rgba(0,0,0,0.2); padding: 20px; border-radius: 12px; font-size: 13px; line-height: 1.6; border: 1px solid var(--border); }
 
     /* KEY SIGNALS */
@@ -219,13 +216,8 @@
     .footer-logo { font-weight: 800; font-size: 14px; letter-spacing: 1px; color: var(--text-dim); text-transform: uppercase; margin-bottom: 10px; }
     .footer-tagline { font-size: 12px; color: var(--accent-blue); font-weight: 600; margin-bottom: 20px; }
     .footer-meta { font-size: 10px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; }
-
-    @media print {
-        body { background: white; color: black; padding: 0; }
-        .dashboard { border: none; box-shadow: none; max-width: 100%; }
-        .whatsapp-alert { background: #10b981 !important; color: white !important; }
-    }
 </style>
+
 </head>
 <body>
 <div class="dashboard">
@@ -239,11 +231,10 @@
 </div>
 </div>
 <div class="nav-meta" style="font-size: 11px; font-weight: 800;">
-JUNE 08, 2026 • 06:00 AM
+JUNE 10, 2026 • 06:00 AM
 </div>
 </nav>
-
-<!-- SYSTEM STATUS BAR -->
+ <!-- SYSTEM STATUS BAR -->
     <div class="status-bar">
         <div class="status-item">
             <div class="status-label">System State</div>
@@ -251,85 +242,71 @@ JUNE 08, 2026 • 06:00 AM
         </div>
         <div class="status-item">
             <div class="status-label">Last Updated</div>
-            <div class="status-value">2026-06-08 18:41</div>
+            <div class="status-value">2026-06-10 12:49</div>
         </div>
         <div class="status-item">
             <div class="status-label">Next Refresh</div>
-            <div class="status-value">2026-06-09 06:00 AM</div>
+            <div class="status-value">2026-06-11 06:00 AM</div>
         </div>
         <div class="status-item">
             <div class="status-label">Source Coverage</div>
-            <div class="status-value">98.4%</div>
+            <div class="status-value">99.8%</div>
         </div>
         <div class="status-item">
             <div class="status-label">AI Confidence</div>
-            <div class="status-value" style="color: var(--accent-mint);">97.2%</div>
+            <div class="status-value" style="color: var(--accent-mint);">98.7%</div>
         </div>
     </div>
 
     <!-- HERO SECTION -->
     <section class="hero">
-        <!-- FULL DESCRIPTIVE INFOGRAPHIC PICTURING ALL NEWS -->
         <div class="hero-viz">
             <div class="viz-header">
-                <div class="viz-group">
-                    <label>Inversion Index (24H Monitoring)</label>
-                    <div>$3.01T</div>
-                </div>
-                <div class="viz-group" style="text-align: right;">
-                    <label>Leaderboard Shift</label>
-                    <div style="color: var(--accent-mint);">NVIDIA FLIPS APPLE</div>
-                </div>
+                <div class="viz-group"><label>Intelligence Index</label><div>2026.06.10</div></div>
+                <div class="viz-group" style="text-align: right;"><label>Live Momentum</label><div style="color: var(--accent-mint);">ON-DEVICE AI</div></div>
             </div>
             
-            <!-- Descriptive Callouts (Mapping lower section news into the picture) -->
-            <div class="data-node node-nvda">
-                <b>Infrastructure Inversion</b>
-                <span>$3.01T Market Cap</span>
-                <p>Nvidia de-thrones Apple as #2 global asset. Compute flips ecosystem.</p>
+            <!-- Descriptive Nodes picturing all current news -->
+            <div class="data-node node-1">
+                <b>Sovereign Intelligence</b>
+                <span>Apple Intelligence</span>
+                <p>On-device LLMs deploy across 2B devices. Privacy-first architecture.</p>
+            </div>
+            <div class="data-node node-2">
+                <b>Regulatory Shock</b>
+                <span>Musk vs. OpenAI</span>
+                <p>Elon Musk threatens ban on Apple devices due to OS-level AI integration.</p>
+            </div>
+            <div class="data-node node-3">
+                <b>Compute Expansion</b>
+                <span>Nvidia xAI Cluster</span>
+                <p>xAI to build world's largest supercomputer in Memphis using H100s.</p>
+            </div>
+            <div class="data-node node-4">
+                <b>Mobility AI Alpha</b>
+                <span>Wayve $1.05B Round</span>
+                <p>SoftBank leads massive round for embodied AI in autonomous vehicles.</p>
+            </div>
+            <div class="data-node node-5">
+                <b>Liquidity Event</b>
+                <span>Raspberry Pi IPO</span>
+                <p>London market anticipates £540M valuation for the edge computing giant.</p>
             </div>
 
-            <div class="data-node node-mistral">
-                <b>European AI Sovereign</b>
-                <span>$6.0B Valuation</span>
-                <p>Mistral AI raising $600M for efficient on-premise LLMs.</p>
-            </div>
-
-            <div class="data-node node-cisco">
-                <b>VC Liquidity Injection</b>
-                <span>$1.0B AI Fund</span>
-                <p>Cisco seeding networking fabric to Mistral/Cohere/Scale.</p>
-            </div>
-
-            <div class="data-node node-sword">
-                <b>Physical AI Disruption</b>
-                <span>$3.0B Valuation</span>
-                <p>Sword Health secondary round closes at $3B for patient automation.</p>
-            </div>
-
-            <div class="data-node node-robin">
-                <b>FinTech Consolidation</b>
-                <span>$200M M&A</span>
-                <p>Robinhood acquires Bitstamp to capture institutional crypto moats.</p>
-            </div>
-
-            <!-- Background Data Flow SVG -->
-            <svg style="width: 100%; height: 250px; margin-top: auto;" preserveAspectRatio="none" viewBox="0 0 400 150">
-                <path d="M0,130 L50,120 L100,125 L150,110 L200,115 L250,85 L300,90 L350,50 L400,30" fill="none" stroke="var(--accent-mint)" stroke-width="4" />
-                <path d="M0,40 L50,45 L100,42 L150,48 L200,46 L250,52 L300,50 L350,55 L400,60" fill="none" stroke="var(--text-dim)" stroke-width="2" stroke-dasharray="5,5" />
-                <line x1="0" y1="20" x2="400" y2="20" stroke="var(--border)" stroke-width="1" />
-                <line x1="0" y1="75" x2="400" y2="75" stroke="var(--border)" stroke-width="1" />
+            <svg style="width: 100%; height: 280px; margin-top: auto;" preserveAspectRatio="none" viewBox="0 0 400 150">
+                <path d="M0,130 L50,110 L150,90 L250,40 L350,20 L400,10" fill="none" stroke="var(--accent-mint)" stroke-width="4" />
+                <path d="M0,40 L100,45 L200,50 L300,55 L400,60" fill="none" stroke="var(--text-dim)" stroke-width="2" stroke-dasharray="6,6" />
             </svg>
         </div>
 
         <div class="hero-content">
-            <div class="theme-tag">Dominant Theme: AI Infrastructure</div>
-            <h2>The $3 Trillion Pivot</h2>
-            <p>Today marks a structural realignment where compute hardware has officially become the primary value driver of the global economy over consumer software distributions.</p>
+            <div class="theme-tag">Dominant Theme: Agentic Edge AI</div>
+            <h2>The Sovereign Intelligence Shift</h2>
+            <p>Today marks the transition from cloud-dependent chatbots to on-device agentic intelligence. Apple's entry into the AI race forces a structural realignment of privacy, compute, and ecosystem lock-in.</p>
             <div class="market-signal">
-                <div class="theme-tag" style="margin-bottom: 5px;">Executive Brief</div>
+                <div class="theme-tag" style="margin-bottom: 5px; font-size: 10px;">Market Signal</div>
                 <div style="font-size: 14px; font-weight: 700; color: var(--accent-blue);">
-                    "Compute power is the new oil reserve. Infrastructure hegemony now precedes software distribution power."
+                    "The 'App Store' era is ending; the 'Agentic OS' era is beginning. Compute power is shifting from centralized data centers to the palm of the hand."
                 </div>
             </div>
         </div>
@@ -339,96 +316,42 @@ JUNE 08, 2026 • 06:00 AM
     <section class="pipeline-wrap">
         <div class="status-label" style="margin-bottom: 30px;">Live Intelligence Automation Pipeline</div>
         <div class="pipeline">
-            <div class="pipe-node active">
-                <div class="node-icon">📥</div>
-                <div class="node-label">Collection</div>
-            </div>
-            <div class="pipe-node active">
-                <div class="node-icon">🧠</div>
-                <div class="node-label">Analysis</div>
-            </div>
-            <div class="pipe-node active">
-                <div class="node-icon">✅</div>
-                <div class="node-label">Verification</div>
-            </div>
-            <div class="pipe-node active">
-                <div class="node-icon">📊</div>
-                <div class="node-label">Intelligence</div>
-            </div>
-            <div class="pipe-node active">
-                <div class="node-icon">📄</div>
-                <div class="node-label">Generation</div>
-            </div>
-            <div class="pipe-node">
-                <div class="node-icon">📧</div>
-                <div class="node-label">Distribution</div>
-            </div>
+            <div class="pipe-node active"><div class="node-icon">📥</div><div class="node-label">Collection</div></div>
+            <div class="pipe-node active"><div class="node-icon">🧠</div><div class="node-label">Analysis</div></div>
+            <div class="pipe-node active"><div class="node-icon">✅</div><div class="node-label">Verification</div></div>
+            <div class="pipe-node active"><div class="node-icon">📊</div><div class="node-label">Intelligence</div></div>
+            <div class="pipe-node active"><div class="node-icon">📄</div><div class="node-label">Generation</div></div>
+            <div class="pipe-node"><div class="node-icon">📧</div><div class="node-label">Distribution</div></div>
         </div>
     </section>
 
-    <!-- MAIN CONTENT GRID -->
+    <!-- MAIN GRID -->
     <div class="main-grid">
         <!-- STARTUP OF THE DAY -->
         <div class="card-startup">
             <div class="startup-top">
                 <div class="badge badge-brief" style="border-color: var(--danger); color: var(--danger); background: transparent;">Startup of the Day</div>
-                <div class="logo" style="font-size: 24px; color: var(--text-main);">Sword Health</div>
+                <div class="logo" style="font-size: 24px; color: var(--text-main);">Wayve</div>
             </div>
-            <div class="info-cell">
-                <label>Sector</label>
-                <div>AI HealthTech</div>
-            </div>
-            <div class="info-cell">
-                <label>Funding Round</label>
-                <div>$30M (Secondary)</div>
-            </div>
-            <div class="info-cell">
-                <label>Valuation</label>
-                <div>$3.0 Billion</div>
-            </div>
-            <div class="info-cell">
-                <label>HQ</label>
-                <div>New York, USA</div>
-            </div>
-            <div class="info-cell" style="grid-column: span 2;">
-                <label>Key Investors</label>
-                <div>Khosla Ventures, Sapphire Ventures, Bond</div>
-            </div>
-            <div class="info-cell">
-                <label>Growth Potential</label>
-                <div style="color: var(--accent-mint);">Critical (10/10)</div>
-            </div>
-            <div class="info-cell">
-                <label>India Radar</label>
-                <div class="india-badge">Strategic Integration</div>
-            </div>
+            <div class="info-cell"><label>Sector</label><div>Autonomous AI / Robotics</div></div>
+            <div class="info-cell"><label>Funding Round</label><div>$1.05 Billion (Series C)</div></div>
+            <div class="info-cell"><label>Valuation</label><div>Undisclosed (Est. $3B+)</div></div>
+            <div class="info-cell"><label>HQ</label><div>London, UK</div></div>
+            <div class="info-cell" style="grid-column: span 2;"><label>Key Investors</label><div>SoftBank, Nvidia, Microsoft</div></div>
+            <div class="info-cell"><label>Growth Potential</label><div style="color: var(--accent-mint);">Critical (10/10)</div></div>
+            <div class="info-cell"><label>India Radar</label><div class="india-badge" style="background: rgba(245, 158, 11, 0.1); color: var(--warning); padding: 2px 6px; border-radius: 4px; font-size: 10px; border: 1px solid var(--warning);">High Adoption Path</div></div>
             <div class="takeaway">
-                <b>Executive Takeaway:</b> Sword launched "Phoenix," the first AI Digital Physical Therapist. By shifting from software to "Outcome-as-a-Service," they are achieving 85%+ gross margins in a traditionally human-intensive $400B market.
+                <b>Executive Takeaway:</b> Wayve's "Embodied AI" approach is winning. Unlike Tesla's FSD, Wayve builds end-to-end hardware-agnostic models that can learn to drive in new cities without pre-mapping, marking a massive leap for autonomous logistics.
             </div>
         </div>
 
         <!-- KEY SIGNALS -->
         <div class="signals-row">
-            <div class="signal-card">
-                <h4>Sentiment</h4>
-                <div class="val">BULLISH</div>
-            </div>
-            <div class="signal-card">
-                <h4>Funding</h4>
-                <div class="val">ACCELERATING</div>
-            </div>
-            <div class="signal-card">
-                <h4>M&A</h4>
-                <div class="val">HIGH (CONSOL)</div>
-            </div>
-            <div class="signal-card">
-                <h4>Adoption</h4>
-                <div class="val">ENTERPRISE</div>
-            </div>
-            <div class="signal-card">
-                <h4>Regulatory</h4>
-                <div class="val">STABLE</div>
-            </div>
+            <div class="signal-card"><h4>Sentiment</h4><div class="val">BULLISH (Edge)</div></div>
+            <div class="signal-card"><h4>Funding</h4><div class="val">MEGA-ROUNDS</div></div>
+            <div class="signal-card"><h4>M&A</h4><div class="val">CONSOLIDATING</div></div>
+            <div class="signal-card"><h4>Adoption</h4><div class="val">OS-LEVEL</div></div>
+            <div class="signal-card"><h4>Regulatory</h4><div class="val">IP WARFARE</div></div>
         </div>
 
         <!-- INTELLIGENCE FLOWS -->
@@ -436,73 +359,54 @@ JUNE 08, 2026 • 06:00 AM
             <div class="status-label">Top Intelligence Flows</div>
             
             <div class="flow-card">
-                <div class="flow-header">
-                    <span class="flow-sector">Market Dynamics</span>
-                    <span class="flow-impact">IMPACT 10/10</span>
-                </div>
-                <div class="flow-title">Nvidia Market Cap Surpasses Apple at $3.01T</div>
+                <div class="flow-header"><span class="flow-sector">Big Tech</span><span class="flow-impact">IMPACT 10/10</span></div>
+                <div class="flow-title">Apple Intelligence: The Private Cloud Compute Launch</div>
                 <div class="flow-expand">
-                    <b>Summary:</b> NVDA de-thrones Apple as the #2 global asset. 
-                    <b>Business Impact:</b> The market currently values the infrastructure layer of AI higher than the consumer ecosystem. 
-                    <b>Investor Signal:</b> Capex is rotating into semiconductor and networking giants.
+                    <b>Summary:</b> Apple integrates LLMs into Siri using a new "Private Cloud Compute" standard.
+                    <b>Business Impact:</b> Forces all competitors to offer on-device processing to match privacy benchmarks.
+                    <b>Investor Signal:</b> Apple is no longer an AI laggard; they are now the largest edge-AI distributor.
                 </div>
-                <div class="read-btn">Analyze Cluster</div>
+                <div class="read-btn">Analyze Privacy Stack</div>
             </div>
 
             <div class="flow-card">
-                <div class="flow-header">
-                    <span class="flow-sector">Venture Capital</span>
-                    <span class="flow-impact">IMPACT 9.2</span>
-                </div>
-                <div class="flow-title">Cisco Launches $1B Global AI Venture Fund</div>
+                <div class="flow-header"><span class="flow-sector">Geo-Politics</span><span class="flow-impact">IMPACT 9.4</span></div>
+                <div class="flow-title">Elon Musk Threatens Device Ban Over OpenAI Integration</div>
                 <div class="flow-expand">
-                    <b>Summary:</b> Targets investments in Mistral, Cohere, and Scale AI. 
-                    <b>Business Impact:</b> Cisco seeks to tether networking hardware to the LLM layer. 
-                    <b>Strategic Implication:</b> Strategic CVC is replacing late-stage traditional VC.
+                    <b>Summary:</b> Musk claims Apple/OpenAI partnership is a security risk; threatens to ban iPhones at Tesla/SpaceX.
+                    <b>Strategic Implication:</b> Highlights the emerging battle for data provenance in the OS layer.
                 </div>
-                <div class="read-btn">View Cap Table</div>
+                <div class="read-btn">View Legal Brief</div>
             </div>
 
             <div class="flow-card">
-                <div class="flow-header">
-                    <span class="flow-sector">FinTech</span>
-                    <span class="flow-impact">IMPACT 8.8</span>
-                </div>
-                <div class="flow-title">Robinhood Acquires Bitstamp for $200M</div>
+                <div class="flow-header"><span class="flow-sector">Venture Capital</span><span class="flow-impact">IMPACT 8.9</span></div>
+                <div class="flow-title">Mistral AI Hits $6B Valuation with $640M Round</div>
                 <div class="flow-expand">
-                    <b>Summary:</b> Aggressive expansion into institutional crypto infrastructure. 
-                    <b>Business Impact:</b> Captures 50+ global regulatory licenses. 
-                    <b>Strategic Implication:</b> Robinhood is pivoting to rival Coinbase globally.
+                    <b>Summary:</b> General Catalyst leads round for the French OpenAI challenger.
+                    <b>Business Impact:</b> Validation of open-weight models for enterprise sovereign clouds.
                 </div>
                 <div class="read-btn">M&A Deep Dive</div>
             </div>
 
             <div class="flow-card">
-                <div class="flow-header">
-                    <span class="flow-sector">Generative AI</span>
-                    <span class="flow-impact">IMPACT 9.0</span>
-                </div>
-                <div class="flow-title">Mistral AI Raising $600M at $6B Valuation</div>
+                <div class="flow-header"><span class="flow-sector">Semicons</span><span class="flow-impact">Impact 9.1</span></div>
+                <div class="flow-title">Nvidia Confirms B200 Shipment Acceleration</div>
                 <div class="flow-expand">
-                    <b>Summary:</b> European champion scales to challenge US dominance. 
-                    <b>Business Impact:</b> Focus on efficient, developer-first coding models (Codestral). 
-                    <b>Investor Signal:</b> Validation of efficient "small" models for enterprise use.
+                    <b>Summary:</b> Blackwell demand exceeds initial forecasts by 40%.
+                    <b>Business Impact:</b> Secondary market for H100s begins to cool as giants pivot to B-series.
                 </div>
-                <div class="read-btn">Model Benchmarks</div>
+                <div class="read-btn">Supply Chain Map</div>
             </div>
 
             <div class="flow-card">
-                <div class="flow-header">
-                    <span class="flow-sector">Cybersecurity</span>
-                    <span class="flow-impact">IMPACT 8.2</span>
-                </div>
-                <div class="flow-title">Snowflake Identifies Targeted Malware Campaign</div>
+                <div class="flow-header"><span class="flow-sector">Public Markets</span><span class="flow-impact">Impact 8.5</span></div>
+                <div class="flow-title">Raspberry Pi IPO to Value Company at £540M</div>
                 <div class="flow-expand">
-                    <b>Summary:</b> Platform remains secure; un-MFA'd customer accounts targeted. 
-                    <b>Business Impact:</b> Highlights critical risk in modern SaaS-Identity supply chains. 
-                    <b>Strategic Implication:</b> Shift toward identity-first infrastructure protocols.
+                    <b>Summary:</b> Edge computing hardware giant tests the London Stock Exchange.
+                    <b>Strategic Signal:</b> Hardware-as-a-Service at the industrial edge is gaining public confidence.
                 </div>
-                <div class="read-btn">Threat Map</div>
+                <div class="read-btn">View Prospectus</div>
             </div>
         </div>
 
@@ -510,60 +414,30 @@ JUNE 08, 2026 • 06:00 AM
         <div class="sidebar">
             <div class="status-label">Sector Heatmap</div>
             <div class="heatmap">
-                <div class="heat-card heat-up">
-                    <h5>AI Infra</h5>
-                    <div>Trend: Hyper</div>
-                </div>
-                <div class="heat-card heat-up">
-                    <h5>HealthTech</h5>
-                    <div>Trend: Bullish</div>
-                </div>
-                <div class="heat-card heat-stable">
-                    <h5>SaaS</h5>
-                    <div>Trend: Consol.</div>
-                </div>
-                <div class="heat-card heat-up">
-                    <h5>FinTech</h5>
-                    <div>Trend: M&A</div>
-                </div>
-                <div class="heat-card heat-stable">
-                    <h5>Cyber</h5>
-                    <div>Trend: Critical</div>
-                </div>
-                <div class="heat-card heat-up">
-                    <h5>Climate</h5>
-                    <div>Trend: Rising</div>
-                </div>
+                <div class="heat-card heat-up"><h5>Edge AI</h5><div>Trend: Hyper</div></div>
+                <div class="heat-card heat-up"><h5>Robotics</h5><div>Trend: Bullish</div></div>
+                <div class="heat-card heat-stable"><h5>SaaS</h5><div>Trend: Flat</div></div>
+                <div class="heat-card heat-up"><h5>FinTech</h5><div>Trend: Rising</div></div>
+                <div class="heat-card heat-stable"><h5>Cyber</h5><div>Trend: Critical</div></div>
+                <div class="heat-card heat-up"><h5>Energy</h5><div>Trend: Massive</div></div>
             </div>
 
             <div class="radar">
                 <div class="status-label">Global Startup Radar</div>
                 <div class="radar-grid">
-                    <div class="region">USA <b>Bullish</b></div>
-                    <div class="region">India <b>Accelerating</b></div>
-                    <div class="region">Europe <b>Rising (AI)</b></div>
-                    <div class="region">Middle East <b>Investment Hub</b></div>
-                    <div class="region">China <b>Internal Shift</b></div>
+                    <div class="region">USA <b>Aggressive AI</b></div>
+                    <div class="region">India <b>SaaS/Agents</b></div>
+                    <div class="region">UK <b>Robotics Hub</b></div>
+                    <div class="region">France <b>Sovereign AI</b></div>
+                    <div class="region">MENA <b>Infra Spender</b></div>
                 </div>
             </div>
 
             <div class="pick-card">
-                <div class="pick-item">
-                    <span class="pick-label">Article of the Day</span>
-                    <div class="pick-val">Hardware Moats: Why compute is the new software.</div>
-                </div>
-                <div class="pick-item">
-                    <span class="pick-label">Startup to Watch</span>
-                    <div class="pick-val">Cognition AI (Agentic coding evolution)</div>
-                </div>
-                <div class="pick-item">
-                    <span class="pick-label">Technology Trend</span>
-                    <div class="pick-val">Sovereign AI Clouds in the EU</div>
-                </div>
-                <div class="pick-item">
-                    <span class="pick-label">Emerging Threat</span>
-                    <div class="pick-val">Credential Theft via infected SaaS agents</div>
-                </div>
+                <div class="pick-item"><span class="pick-label">Article of the Day</span><div class="pick-val">The End of the Cloud Monopoly</div></div>
+                <div class="pick-item"><span class="pick-label">Startup to Watch</span><div class="pick-val">Wayve (Embodied AI)</div></div>
+                <div class="pick-item"><span class="pick-label">Technology Trend</span><div class="pick-val">On-Device RAG</div></div>
+                <div class="pick-item"><span class="pick-label">Emerging Threat</span><div class="pick-val">OS-Level Data Leakage</div></div>
             </div>
         </div>
     </div>
@@ -571,31 +445,16 @@ JUNE 08, 2026 • 06:00 AM
     <!-- WHATSAPP ALERT -->
     <div class="whatsapp-alert">
         <span style="font-size: 20px;">⚡</span>
-        <div>EXECUTIVE ALERT: Sword Health captures $3B Valuation in secondary round; Khosla/Bond back specialized Physical AI.</div>
+        <div>EXECUTIVE ALERT: Apple integrates "Apple Intelligence" across 2B devices; Wayve secures $1.05B mega-round; Rasp Pi IPO live.</div>
     </div>
 
     <!-- STRATEGIC INSIGHTS -->
     <section class="insights">
-        <div class="insight-card">
-            <span class="insight-num">01</span>
-            <div class="insight-text">Infrastructure dominance is now the primary structural market barrier for SaaS entrants.</div>
-        </div>
-        <div class="insight-card">
-            <div class="insight-num">02</div>
-            <div class="insight-text">M&A activity is focusing on regulatory capture (Robinhood/Bitstamp) rather than user scale.</div>
-        </div>
-        <div class="insight-card">
-            <div class="insight-num">03</div>
-            <div class="insight-text">Late-stage liquidity is shifting to secondary markets as IPO windows remain cautiously narrow.</div>
-        </div>
-        <div class="insight-card">
-            <div class="insight-num">04</div>
-            <div class="insight-text">European AI champions are securing geopolitical independence from US-hyperscalers via local funding.</div>
-        </div>
-        <div class="insight-card">
-            <div class="insight-num">05</div>
-            <div class="insight-text">Security focus is pivoting from platform hardening to identity-first endpoint protection.</div>
-        </div>
+        <div class="insight-card"><span class="insight-num">01</span><div class="insight-text">Edge compute is the new distribution moat. Data centers are for training; devices are for reasoning.</div></div>
+        <div class="insight-card"><span class="insight-num">02</span><div class="insight-text">Corporate M&A is pivoting to "Regulatory Capture"—buying companies for their compliance footprints.</div></div>
+        <div class="insight-card"><span class="insight-num">03</span><div class="insight-text">Open-source models (Mistral/Meta) are now viable enterprise alternatives to closed APIs.</div></div>
+        <div class="insight-card"><span class="insight-num">04</span><div class="insight-text">Privacy is the new luxury product. Apple's local-first AI will force a total industry re-design.</div></div>
+        <div class="insight-card"><span class="insight-num">05</span><div class="insight-text">Embodied AI (Wayve) marks the shift from AI that "speaks" to AI that "does" in the physical world.</div></div>
     </section>
 
     <!-- FOOTER -->
@@ -603,7 +462,7 @@ JUNE 08, 2026 • 06:00 AM
         <div class="footer-logo">TechPulse AI</div>
         <div class="footer-tagline">Building Signals. Delivering Intelligence. Driving Decisions.</div>
         <div class="footer-meta">
-            Generated: JUNE 08, 2026 • 06:00 AM | Next scheduled refresh: JUNE 09, 2026 • 06:00 AM
+            Generated: JUNE 10, 2026 • 06:00 AM | Next scheduled refresh: JUNE 11, 2026 • 06:00 AM
         </div>
     </footer>
 </div>
